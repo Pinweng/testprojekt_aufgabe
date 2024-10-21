@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
       $ok = false;
       break;
 
-    case !preg_match('/^[/d\-\(\)\/\+\s]*$/', $contactnumber):
+    case !preg_match('/^[\d\-\(\)\/\+\s]*$/', $contactnumber):
       $errormsg = "Please use a valid Phone Number";
       $ok = false;
       break;
