@@ -74,6 +74,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
 }
 
-
+//var_dump
 require_once("./form/form.php");
 ?>
