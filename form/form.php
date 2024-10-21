@@ -32,7 +32,7 @@
     </label>
     
     
-    <button class="fancy" type="submit" >
+    <button class="fancy" type="submit" value="send-login" name="send-login" >
         <span class="top-key"></span>
         <span class="text">submit</span>
         <span span class="bottom-key-1"></span>

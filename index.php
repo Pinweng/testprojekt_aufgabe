@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $email = trim($_POST["email"]);
     $contactnumber =(int) trim($_POST["contactnumber"]);
 
-  var_dump($lastname);
+var_dump($firstname);
 
   switch (true) {
     case empty($_POST["firstname"]):
