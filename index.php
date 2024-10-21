@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $email = trim($_POST["email"]);
     $contactnumber =(int) trim($_POST["contactnumber"]);
 
-var_dump($firstname);
+
 
   switch (true) {
     case empty($_POST["firstname"]):
@@ -23,7 +23,7 @@ var_dump($firstname);
       break;
 
     case !ctype_alpha($firstname):
-      $errormsg = "Only letters are allowed";
+      $errormsg = "Only letters are allowed for firstname";
       $ok = false;
       break;
 
@@ -33,7 +33,7 @@ var_dump($firstname);
       break;
 
     case !ctype_alpha($lastname):
-      $errormsg = "Only letters are allowed";
+      $errormsg = "Only letters are allowed for lastname";
       $ok = false;
       break;
 
