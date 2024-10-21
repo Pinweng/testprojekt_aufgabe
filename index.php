@@ -51,6 +51,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
       $errormsg = "Contact Number ist not set yet";
       $ok = false;
       break;
+
+    case !preg_match('/^[/d\-\(\)\/\+\s]*$/', $contactnumber):
+      $errormsg = "Please use a valid Phone Number";
+      $ok = false;
+      break;
     
     default:
       $ok = false;
