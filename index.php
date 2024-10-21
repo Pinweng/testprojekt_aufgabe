@@ -1,45 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./index.css">
-<title>Document</title>
-</head>
-<body>
-<form class="form" method="post" action="#">
-    
-    <div class="flex">
-        <label>
-            <input required="" placeholder="" type="text" class="input" name="firstname" id="input-firstname" value="<?php echo htmlspecialchars($firstname ?? "") ?> ">
-            <span>first name</span>
-        </label>
+<?php 
 
-        <label>
-            <input required="" placeholder="" type="text" class="input" name="lastname" id="input-lastname" value="<?php echo htmlspecialchars($lastename ?? "") ?>">
-            <span>last name</span>
-        </label>
-    </div>  
-            
-    <label>
-        <input required="" placeholder="" type="email" class="input" name="email" id="input-email" value="<?php echo htmlspecialchars($email ?? "") ?>">
-        <span>email</span>
-    </label> 
-        
-    <label>
-        <input required="" type="tel" placeholder="" class="input" name="contactnumber" id="input-contactnumber" value="<?php echo htmlspecialchars($contactnumber ?? "" )?>">
-        <span>contact number</span>
-    </label>
-    
-    
-    <button class="fancy" type="submit" >
-        <span class="top-key"></span>
-        <span class="text">submit</span>
-        <span span class="bottom-key-1"></span>
-        <span class="bottom-key-2"></span>
-    </button>
-</form>
+$ok = true;
 
-<small><?php echo $errormsg ?? ''; ?></small>
-</body>
-</html>
+$errormsg = null;
+
+
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+
+  if(isset($_POST["send-login"])){
+
+    $firstname = trim($_POST["firstname"]);
+    $lastname = trim($_POST["lastname"]);
+    $email = trim($_POST["email"]);
+    $contactnumber =(int) trim($_POST["contactnumber"]);
+
+  var_dump($lastname);
+
+  switch (true) {
+    case empty($_POST["firstname"]):
+      $errormsg = "Firstname ist not set yet";
+      $ok = false;
+      break;
+
+    case !ctype_alpha($firstname):
+      $errormsg = "Only letters are allowed";
+      $ok = false;
+      break;
+
+    case empty($_POST["lastname"]):
+      $errormsg = "Lastname ist not set yet";
+      $ok = false;
+      break;
+
+    case !ctype_alpha($lastname):
+      $errormsg = "Only letters are allowed";
+      $ok = false;
+      break;
+
+    case empty($_POST["email"]):
+      $errormsg = "Email ist not set yet";
+      $ok = false;
+      break;
+
+    case !filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL):
+      $errormsg = "Please enter a valid email";
+      $ok = false;
+      break;
+
+    case empty($_POST["contactnumber"]):
+      $errormsg = "Contact Number ist not set yet";
+      $ok = false;
+      break;
+    
+    default:
+      $ok = false;
+      $errormsg = null;
+      break;
+  }
+
+  if($ok){
+    $errormsg = "Formular is send correctly";
+
+    // Clear input values only if form submission is successful
+    $firstname = $lastname = $email = $contactnumber = "";
+  }
+
+  }
+
+}
+
+
+require_once("./form/index.php");
+?>
